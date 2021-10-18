@@ -1,0 +1,62 @@
+<header class="header">
+    <div class="line-container line-shadow-bottom">
+        <div class="container">
+            <div class="links">
+                <button type="button" class="mode-bg-btn btn-none" id="btn-night-mode">
+                    <i class="fa fa-moon-o"></i>
+                </button>
+                <ul class="socie-list">
+                    <li class="socie-item">
+                        <a href="" class="socie-link a-decor-none fz-fog">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li class="socie-item">
+                        <a href="" class="socie-link a-decor-none fz-fog">
+                            <i class="fa fa-vk"></i>
+                        </a>
+                    </li>
+                    <li class="socie-item">
+                        <a href="" class="socie-link a-decor-none fz-fog">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="line-container line-shadow-bottom">
+        <div class="container">
+            <div class="navs">
+                <div class="logo-container">
+                    <div class="logo-item">
+                        <a href="" class="logo-link a-decor-none fz-black">
+                            News&Design
+                        </a>
+                    </div>
+                </div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link fz-black a-decor-none">
+                            Home
+                        </a>
+                    </li>
+                    {% for rubric in rubrics %}
+                    <li class="nav-item">
+                        <a href="rubric.slug" class="nav-link fz-black a-decor-none">
+                            {{ rubric.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="menu-burger">
+                    <button class="btn-none" type="button" id="burger-button">
+                        <span class="burger-item"></span>
+                        <span class="burger-item"></span>
+                        <span class="burger-item"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

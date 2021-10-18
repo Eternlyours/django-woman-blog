@@ -1,0 +1,114 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+{{ object.title }} | Публикация
+{% endblock %}
+
+{% block alert %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <p>
+                    {{ message }}
+                </p>
+                <button type="button" id="btn-close-alert">
+                    Закрыть
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock  %}
+
+{% block content %}
+
+<div class="blog post-borderline">
+    <a href="{% url 'post-detail' previous_post.slug %}" title="{{ previous_post.title }}">Предыдущая публикация</a>
+    <a href="{% url 'post-detail' next_post.slug %}" class="" title="{{ next_post.title }}">Следующая публикация</a>
+    <article class="post-detail-article">
+        <header>
+            <h1 class="title post-detail-title">
+                {{ object.title }}
+            </h1>
+        </header>
+        {{ object.body|safe }}
+    </article>
+</div>
+
+<h2 class="title">
+    Оставить комментарий
+</h2>
+
+<form action="{% url 'post-detail' object.slug %}" method="post">
+    {% csrf_token %}
+    <div class="comment-input-group">
+        <label for="{{ form.name.id_for_label }}" class="comment-input-label">
+            {{ form.name.label }}
+        </label>
+        {{ form.name }}
+        {% for error in form.name.errors %}
+            <p class="comment-form-error">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </div>
+    <div class="comment-input-group">
+        <small class="comment-input-helptext">{{ form.email.help_text }}</small>
+        <label for="{{ form.email.id_for_label }}" class="comment-input-label">
+            {{ form.email.label }}
+        </label>
+        {{ form.email }}
+        {% for error in form.email.errors %}
+            <p class="comment-form-error">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </div>
+    <div class="comment-input-group">
+        <label for="{{ form.text.id_for_label }}" class="comment-input-label">
+            {{ form.text.label }}
+        </label>
+        {{ form.text }}
+        {% for error in form.text.errors %}
+            <p class="comment-form-error">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </div>
+    {{ form.media }}
+    <div class="comment-input-group">
+        <button type="submit" class="comment-submit-btn">Сохранить</button>
+    </div>
+</form>
+
+<div class="comments">
+    {% for comment in comments %}
+        <div class="post-comment">
+            {{ comment.text|safe }}
+            <footer>
+                <small>
+                    Автор: 
+                    {{ comment.commentator.name }}
+                    |
+                    {{ comment.created_at|timesince }} назад.
+                </small>
+            </footer>
+        </div>
+    {% empty %}
+        <div>
+            <h3 class="title">Ваш комментарий может быть первым!</h3>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    {% load static %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script>
+        $('#btn-close-alert').click(function() {
+            $(this).parent().hide('fast');
+        });
+    </script>
+{% endblock  %}

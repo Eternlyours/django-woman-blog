@@ -1,0 +1,21 @@
+<div class="slider-popular-posts">
+    
+    {% for post in popular_posts %}
+        <div class="popular-post-card" style="background-image: url('{{ post.picture_for_header.url }}');">
+            <h1 class="popular-post-card-title title">
+                {{ post.title }}
+            </h1>    
+            <div class="popular-post-card-text">
+                <p>
+                    {{ post.body|truncatewords_html:30|safe }}
+                </p>
+            </div>
+            <div class="popular-cart-container-link">
+                <a href="{% url 'post-detail' post.slug %}" class="btn btn-link">
+                    Подробнее...
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    
+</div>

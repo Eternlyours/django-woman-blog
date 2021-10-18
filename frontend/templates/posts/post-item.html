@@ -1,0 +1,18 @@
+{% for post in object_list %}
+<article class="blog-card">
+    <div class="blog-card-media">
+        <img src="{{ post.picture_for_header.url }}" alt=""
+            class="blog-card-img">
+    </div>
+    <h1 class="title blog-card-title">
+        {{ post.title }}
+    </h1>
+    <div class="blog-card-btn-container">
+        <a href="{% url 'post-detail' post.slug %}" class="btn btn-link">
+            Подробнее
+        </a>
+    </div>
+</article>
+{% empty %}
+<h1>Пусто</h1>
+{% endfor %}

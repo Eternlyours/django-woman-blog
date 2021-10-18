@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block slider %}
+
+{% include 'base/slider.html' %}
+
+{% endblock %}
+
+{% block content %}
+<div class="blog">
+    {% include "posts/post-item.html" %}
+</div>
+{% endblock %}

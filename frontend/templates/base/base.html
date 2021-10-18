@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <link rel="stylesheet" href="{% static 'style/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'style/animate.min.css' %}">
+    <title>
+        {% block title %}
+            
+        {% endblock  %}
+    </title>
+</head>
+
+<body>
+    <div class="wrapper">
+        {% block alert %}
+    
+        {% endblock %}
+        {% include "base/header.html" %}
+        <div class="main">
+            <div class="container">
+                {% block slider %}
+
+                {% endblock %}
+                <div class="content">
+                    <div class="main-content">
+                        {% block content %}
+
+                        {% endblock %}
+                    </div>
+                    <div class="sidebar">
+                        <div class="sidebar-content">
+                            <header>
+                                <h2 class="title sidebar-title">Рекомендуем</h2>
+                            </header>
+                            <a href="" class="a-decor-none fz-black">
+                                <div class="sidebar-card">
+                                    <img src="https://cdn.pixabay.com/photo/2015/07/09/22/45/tree-838667_960_720.jpg" alt="" class="sidebar-card-img">
+                                    <div class="sidebar-card-title-cont">
+                                        <h3 class="title">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto expedita quo minima laudantium modi nulla?
+                                        </h3>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="" class="a-decor-none fz-black">
+                                <div class="sidebar-card">
+                                    <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg" alt="" class="sidebar-card-img">
+                                    <div class="sidebar-card-title-cont">
+                                        <h3 class="title">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae quod sint magni sequi magnam ipsa, tenetur reiciendis ea impedit.
+                                        </h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include "base/footer.html" %}
+    </div>
+</body>
+{% load static %}
+<script src="{% static 'scripts/jquery.min.js' %}"></script>
+<script src="{% static 'scripts/scripts.js' %}"></script>
+<script src="{% static 'scripts/slick.min.js' %}"></script>
+<script src="{% static 'scripts/wow.min.js' %}"></script>
+{% block scripts %}
+
+{% endblock %}
+</html>
